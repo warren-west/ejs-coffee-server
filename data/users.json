@@ -1,0 +1,23 @@
+[
+  {
+    "username": "admin",
+    "password": "1234",
+    "viewedCoffees": [
+      2,
+      3
+    ]
+  },
+  {
+    "username": "Warren",
+    "password": "1234",
+    "viewedCoffees": [
+      3,
+      1,
+      5
+    ]
+  },
+  {
+    "username": "Barista Ben",
+    "password": "1234"
+  }
+]

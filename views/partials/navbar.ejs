@@ -1,0 +1,12 @@
+<nav>
+    <ul>
+        <a href="/"><li>Home</li></a>
+        <a href="/coffees"><li>Coffee Catalog</li></a>
+
+        <% if (!locals.currentUser) { %>
+          <a href="/login" class="loginButton"><li>Login</li></a>  
+          <% } else { %>
+            <a href="/login/logout" class="loginButton"><li>Logout</li></a>
+        <% } %>
+    </ul>
+</nav>

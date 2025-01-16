@@ -2,10 +2,38 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+#signupBtn {
+    float: right;
+}
+
 .coffee-container {
     background-color: rgb(193, 162, 140);
     border: 1px solid rgb(44, 25, 1);
     border-radius: 5px;
     margin: 12px;
     padding: 22px;
+}
+
+.loginButton {
+    float: right;
+}
+
+nav ul {
+    background-color: whitesmoke;
+    padding: 12px 24px;
+}
+
+nav ul a {
+    text-decoration: none;
+}
+
+nav ul a li {
+    display: inline;
+    padding: 12px 16px;
+    margin: 0;
+
+}
+nav ul a li:hover {
+    background-color: rgb(213, 208, 204);
+    color: rgb(44, 25, 1);
 }

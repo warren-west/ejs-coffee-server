@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <%- include('./partials/stylingHead.ejs') %>
+</head>
+
+<body>
+    <%- include('./partials/navbar.ejs') %>
+        Signup Page
+        <br><br>
+
+        <main class="container">
+            <form method="POST" action="/login/signup">
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" class="form-control" id="username" name="username" placeholder="Enter username"
+                        required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" class="form-control" id="password" name="password"
+                        placeholder="Enter password" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirm-password">Confirm Password:</label>
+                    <input type="password" class="form-control" id="confirm-password" name="confirmPassword"
+                        placeholder="Confirm password" required>
+                    <button type="submit" class="btn btn-primary">Sign Up</button>
+                </div>
+            </form>
+        </main>
+
+        <br><br>
+</body>
+
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coffee Details</title>
+    <%- include('./partials/stylingHead.ejs') %>
+</head>
+<body>
+    <%- include('./partials/navbar.ejs') %>
+    
+    <div class="coffee-container">
+        <h3><%= `(${theCoffee.id}) ${theCoffee.description}` %></h3>
+        <p><%= `${theCoffee.price} kr.` %></p>
+        <a href="/coffees">Back To Coffee Catalog</a>
+    </div>
+</body>
+</html>

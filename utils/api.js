@@ -1,13 +1,18 @@
-const COFFEE_API_URL = "https://thoughtful-vagabond-fibre.glitch.me/coffee"
+require('dotenv').config()
 
 // (Revealing) Module pattern
 const apiHelper = {
     coffees: [],
     getCoffeeData: async function() {
-        const resp = await fetch(COFFEE_API_URL)
-        const data = await resp.json()
-
-        this.coffees = data
+        try {
+            console.log("Fetching coffee data from API")
+            const resp = await fetch(process.env.API_URL)
+            const data = await resp.json()
+    
+            this.coffees = data
+        } catch(ex) {
+            console.log(ex.message)
+        }
     }
 }
 

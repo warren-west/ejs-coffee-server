@@ -6,6 +6,24 @@ const fs = require('fs')
 router.route('/')
     // GET /coffees
     .get((req, res) => {
+
+        // console.log(`URL: ${req.url}`)
+        // console.log(`Query Param 'search': ${req.query.search}`)
+
+        const coffeesToRender = []
+
+        if (!req.query.search) {
+            coffeesToRender.push(...apiHelper.coffees)
+        } else {
+            // We're making the search logic case INSENSITIVE
+            // exact match logic:
+            // coffeesToRender.push(...apiHelper.coffees.filter((item) => item.description.toLowerCase() === req.query.search.trim().toLowerCase()))
+            // partial match logic:
+            coffeesToRender.push(...apiHelper.coffees.filter((item) => item.description.toLowerCase().includes(req.query.search.trim().toLowerCase())))
+        }
+
+        // console.log(coffeesToRender)
+
         const currentUser = req.user
 
         if (currentUser) {
@@ -17,10 +35,10 @@ router.route('/')
     
             const viewedCoffees = existingUser.viewedCoffees ? existingUser.viewedCoffees : []
 
-            res.render('coffees', { coffees: apiHelper.coffees, currentUser, viewedCoffees })
+            res.render('coffees', { coffees: coffeesToRender, currentUser, viewedCoffees })
         }
 
-        res.render('coffees', { coffees: apiHelper.coffees, currentUser, viewedCoffees: [] })
+        res.render('coffees', { coffees: coffeesToRender, currentUser, viewedCoffees: [] })
 
     })
     // POST /coffees
@@ -29,7 +47,7 @@ router.route('/')
     })
 
 // GET /coffees/5
-router.get('/:id', (req, res) => {
+router.get('/:id', (req, res, next) => req.isAuthenticated() ? next() : res.redirect('/login'), (req, res) => {
     // req.params.id
     const currentUser = req.user
     const theCoffee = apiHelper.coffees.find((coffee) => coffee.id === Number(req.params.id))
@@ -60,5 +78,14 @@ router.get('/:id', (req, res) => {
     // console.log(`theCoffee is ${theCoffee.description} ${theCoffee.price}`)
     res.render('coffeeDetails', { theCoffee, currentUser })
 })
+/* Middleware for checking if a user is logged in, if they aren't send them to the login page before accessing the guarded page
+function middlewareIsAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) {
+        next()
+    }
+    res.redirect('/login')
+}
 
+const middlewareIsAuthenticatedShort = (req, res, next) => req.isAuthenticated() ? next() : res.redirect('/login')
+*/
 module.exports = router

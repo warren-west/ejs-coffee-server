@@ -12,22 +12,34 @@
    <%- include('./partials/navbar.ejs') %>
    <%- include('./partials/header.ejs') %>
 
-    <% for( let i = 0; i < coffees.length; i++ ) { %>
-        <div class="coffee-container">
-            <h3>
-                <%= `(${coffees[i].id}) ${coffees[i].description}` %>
-                <% if (viewedCoffees.includes(coffees[i].id)) { %>
-                    <span>👁️👁️</span>
-                <% } %>   
-            </h3>
-            <p><%= `${coffees[i].price} kr.` %></p>
-            <% if ( currentUser ) { %>
-                <a href="<%=`/coffees/${coffees[i].id}`%>">View Coffee Details</a>
-            <% } else { %>
-                <a href="/login">Login to View Coffee Details</a>
-            <% }  %>
+    <form action="/coffees" method="get" class="container">
+        <div class="form-group">
+            <label for="coffee-search">Search: </label>
+            <input id="coffee-search" type="text" placeholder="Java" name="search">
+
+            <button class="btn btn-primary" type="submit">Search</button>
         </div>
-    <% } %>
+    </form>
+
+    <div class="container">
+        <% for( let i = 0; i < coffees.length; i++ ) { %>
+            <div class="coffee-container">
+                <h3>
+                    <%= `(${coffees[i].id}) ${coffees[i].description}` %>
+                    <% if (viewedCoffees.includes(coffees[i].id)) { %>
+                        <span>👁️👁️</span>
+                    <% } %>   
+                </h3>
+                <p><%= `${coffees[i].price} kr.` %></p>
+                <% if ( currentUser ) { %>
+                    <a href="<%=`/coffees/${coffees[i].id}`%>">View Coffee Details</a>
+                <% } else { %>
+                    <a href="/login">Login to View Coffee Details</a>
+                <% }  %>
+            </div>
+        <% } %>
+
+    </div>
 
 </body>
 </html> 
